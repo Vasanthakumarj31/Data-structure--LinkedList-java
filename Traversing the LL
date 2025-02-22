@@ -1,0 +1,43 @@
+class Node{
+    int data;
+    Node next;
+    Node(int data,Node next){
+        this.data=data;
+        this.next=next;
+    }
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+    Node(){
+        this.data=0;
+        this.next=null;
+    }
+}
+class LinkedList{
+    public static Node ArraytoLL(int[] a){
+        Node head=new Node(a[0]);
+        Node mover=head;
+        for(int i=1;i<a.length;i++){
+            Node temp=new Node(a[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+}
+
+public class Main {
+	public static void main(String[] args) {
+		int[] a={10,20,30,40,50};
+		Node head=LinkedList.ArraytoLL(a);
+		Node temp=new Node();
+		 temp=head;
+		while(temp!=null){
+		    System.out.print(temp.data+" ");
+		    temp=temp.next;
+		}
+		
+		
+	}
+}
