@@ -1,0 +1,42 @@
+class Node{
+    int data;
+    Node next;
+    Node(int data,Node next){
+        this.data=data;
+        this.next=next;
+    }
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    public static Node array2LL(int[] a){
+        Node head=new Node(a[0]);
+        Node mover=head;
+        for(int i=1;i<a.length;i++){
+            Node temp=new Node(a[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+
+   public static int elementIsPresent(Node head,int data){
+       Node temp=head;
+       while(temp!=null){
+           if(temp.data==data)return 1;
+           temp=temp.next;
+       }
+       return 0;
+}
+}
+   
+public class Main {
+	public static void main(String[] args) {
+		int[] a={10,20,30,40,50};
+		Node head=LinkedList.array2LL(a);
+		System.out.println(LinkedList.elementIsPresent(head,30));
+		
+	} 
+}
