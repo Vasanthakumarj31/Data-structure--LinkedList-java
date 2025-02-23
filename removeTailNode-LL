@@ -1,0 +1,57 @@
+class Node{
+    int data;
+    Node next;
+    Node(int data,Node next){
+        this.data=data;
+        this.next=next;
+    }
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    public static Node array2LL(int[] a){
+        Node head=new Node(a[0]);
+        Node mover=head;
+        for(int i=1;i<a.length;i++){
+            Node temp=new Node(a[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+    
+    public static Node removeTail(Node head){
+        if(head==null || head.next==null) return null;
+        Node temp=head;
+        while(temp.next.next!=null){
+            temp=temp.next;
+        }
+        temp.next=null;
+        return head;
+    }
+    
+    public static void printLL(Node head){
+           Node temp=head;
+           while(temp!=null){
+               System.out.print(temp.data+"->");
+               temp=temp.next;
+               }
+               System.out.println("null");
+    }
+}
+
+
+public class Main {
+	public static void main(String[] args) {
+		int[] a={10,20,30,40,50};
+		Node head=LinkedList.array2LL(a);
+		LinkedList.printLL(head);
+		
+		LinkedList.printLL(LinkedList.removeTail(head));
+		
+		
+		
+	}
+}
