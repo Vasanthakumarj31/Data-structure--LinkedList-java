@@ -1,0 +1,65 @@
+class Node{
+    int data;
+    Node next;
+    Node(int data,Node next){
+        this.data=data;
+        this.next=next;
+    }
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    public static Node array2LL(int[] a){
+        Node head=new Node(a[0]);
+        Node mover=head;
+        for(int i=1;i<a.length;i++){
+            Node temp=new Node(a[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+    
+    public static Node removeK(Node head,int element){
+        if(head==null) return head;
+        if(head.data==element) return  head.next;
+        Node temp=head;
+        Node previous=null;
+        
+        while(temp!=null && temp.data!=element){
+            previous=temp;
+            temp=temp.next;
+        
+        }
+        if(temp!=null){
+            previous.next=temp.next;
+        }
+        return head;
+    }
+        
+    
+    public static void printLL(Node head){
+           Node temp=head;
+           while(temp!=null){
+               System.out.print(temp.data+"->");
+               temp=temp.next;
+               }
+               System.out.println("null");
+    }
+}
+
+
+public class Main {
+	public static void main(String[] args) {
+		int[] a={10,20,30,40,50};
+		Node head=LinkedList.array2LL(a);
+		LinkedList.printLL(head);
+		
+		LinkedList.printLL(LinkedList.removeK(head,20));
+		
+		
+		
+	}
+}
