@@ -1,0 +1,69 @@
+class Node{
+    int data;
+    Node next;
+    Node(int data,Node next){
+        this.data=data;
+        this.next=next;
+    }
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    public static Node array2LL(int[] a){
+        Node head=new Node(a[0]);
+        Node mover=head;
+        for(int i=1;i<a.length;i++){
+            Node temp=new Node(a[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+    public static Node insertBeforeValue(Node head,int value,int data){
+        if(head==null ){
+           return null;
+           }
+        if(head.data==value){
+            Node temp=new Node(data,head);
+            return temp;
+        }
+        
+        Node temp=head;
+        while(temp.next!=null){
+          
+            if(temp.next.data==value){
+                Node newnode=new Node(data);
+                newnode.next=temp.next;
+                temp.next=newnode;
+               break;
+            }
+            temp=temp.next;
+        }
+        return head;
+    }
+    
+        
+
+  public static void printLL(Node head){
+       Node temp=head;
+       while(temp!=null){
+           System.out.print(temp.data+"->");
+           temp=temp.next;
+       }
+       System.out.println("null");
+}
+}
+
+
+public class Main {
+	public static void main(String[] args) {
+		int[] a={10,20,30,40,50};
+		Node head=LinkedList.array2LL(a);
+				LinkedList.printLL(LinkedList.insertBeforeValue(head,40,50));
+		LinkedList.printLL(LinkedList.insertBeforeValue(head,30,40));
+	
+	}
+	
+}
